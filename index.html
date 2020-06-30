@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Rock paper Scissor</title>
+
+    <script type="text/javascript">
+
+      var p1Move = 0;
+      var p1Score = 0;
+      var p2Move = 0;
+      var p2Score = 0;
+      var move=1;
+      var matche=1;
+
+      function randomRPS(){
+
+        p1Move = Math.floor(Math.random()*3+1);
+        p2Move = Math.floor(Math.random()*3+1);
+
+      //console.log("p1="+p1Move);
+      //console.log("p2="+p2Move);
+
+
+
+            //1= rock,2=paper,3=scissor
+
+               if(p1Move==1){
+                        document.getElementById('p1image').src="rock.png";
+                         if(p2Move==1){
+                           document.getElementById('p2image').src="rock.png";
+                            // document.getElementById('recentMatche').innerHTML="rock-rock";
+                             alert("Draw");
+                         }else if(p2Move==2){
+                           document.getElementById('p2image').src="paper.png";
+                           //document.getElementById('recentMatche').innerHTML="rock-paper";
+                           p2Score++;
+                         }else{
+                           document.getElementById('p2image').src="scissors.png";
+                            //document.getElementById('recentMatche').innerHTML="rock-scissor";
+                           p1Score++;
+                         }
+
+               }else if(p1Move==2){
+                 document.getElementById('p1image').src="paper.png";
+                 if(p2Move==1){
+                    //document.getElementById('recentMatche').innerHTML="paper-rock";
+                    document.getElementById('p2image').src="rock.png";
+                   p1Score++;
+                 }else if(p2Move==2){
+                   document.getElementById('p2image').src="paper.png";
+                    //document.getElementById('recentMatche').innerHTML="paper-paper";
+                  alert("Draw");
+                 }else{
+                   document.getElementById('p2image').src="scissors.png";
+                    //document.getElementById('recentMatche').innerHTML="paper-scissor";
+                   p2Score++;
+                 }
+
+               }else{
+                 document.getElementById('p1image').src="scissors.png";
+                     if(p2Move==1){
+                       document.getElementById('p2image').src="rock.png";
+                        //document.getElementById('recentMatche').innerHTML="scissor-rock";
+                       p2Score++;
+                     }else if(p2Move==2){
+                       document.getElementById('p2image').src="paper.png";
+                        //document.getElementById('recentMatche').innerHTML="scissor-paper";
+                       p1Score++;
+                     }else{
+                       document.getElementById('p2image').src="scissors.png";
+                        // document.getElementById('recentMatche').innerHTML="Scissor-scissor";
+                       alert("Draw");
+                     }
+              }
+
+
+   //change move
+         if(move!=1){
+              document.getElementById('playerMove').innerHTML="<h2>player1</h2>";
+              move*=-1
+        }else {
+          document.getElementById('playerMove').innerHTML="<h2>player2</h2>";
+          move*=-1
+        }
+
+
+        //add matches
+      document.getElementById('matches').innerHTML=matche;
+        matche++;
+
+      }
+
+
+          function getScore(){
+            if(p1Score>p2Score){
+            document.getElementById('score').innerHTML=
+                       "playe1 score is = "+p1Score+" && player 2 score is ="+p2Score;
+            document.getElementById('playerMove').disabled = true;
+            alert("playe1 won");
+            document.getElementById('restarImage').src = "restart.gif";
+            document.getElementById('p1image').src = "";
+            document.getElementById('p2image').src = "";
+
+
+          }else {
+            document.getElementById('score').innerHTML=
+                      "playe1 score is = "+p1Score+" && player 2 score is ="+p2Score;
+            document.getElementById('playerMove').disabled = true;
+            document.getElementById('restarImage').src = "restart.gif";
+            document.getElementById('p2image').src = "";
+            document.getElementById('p1image').src = "";
+
+            alert("playe2 won");
+          }
+
+          }
+    </script>
+
+
+
+  </head>
+  <body>
+      <fieldset>
+          <legend><h1> <marquee>Rock PaPer Scissor</marquee>  </h1></legend>
+
+            <h2 >Total matches = <span id="matches">0</span></h2>
+            <!-- <h2 id="recentMatche"></h2> -->
+            <h1 id="score"></h1>
+
+            <table style="margin-left: auto; margin-right: auto;">
+              <tr>
+                <th>
+                  <button type="button" id="playerMove"
+                          onclick="randomRPS();"><h2>START</h2></button>
+                </th>
+                <th>
+                 <button type="button" name="button"
+                         onclick="getScore();"><h2>LOCK GAME</h2></button>
+               </th>
+             </tr>
+             <tr>
+               <a href="index.html"><img src="" id="restarImage"></a>
+             </tr>
+            </table>
+        </fieldset>
+
+          <table style="margin-left: auto;
+            margin-right: auto;">
+            <tr>
+              <td>
+                <fieldset>
+                  <legend><h4>PLAYER 1</h4></legend>
+                    <img src="" id="p1image">
+                  </fieldset>
+              </td>
+              <td>
+                <fieldset>
+                    <legend><h4>PLAYER 2</h4></legend>
+                      <img src="" id="p2image">
+                    </fieldset>
+                </td>
+            </tr>
+          </table>
+
+    </body>
+</html>
